@@ -7,7 +7,12 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.stream.Collectors;
+
 import javax.swing.Timer;
 
 /**
@@ -16,12 +21,13 @@ import javax.swing.Timer;
  */
 public class BackendMain {
 	
-	public static final String VERSION = "ALPHA 18.3.5";
+	public static final String VERSION = "ALPHA 18.3.6";
 	
 	public static ServerSocket server;
 	public static ArrayList<Socket> clients;
 	public static ArrayList<PrintWriter> outs;
 	public static ArrayList<BufferedReader> ins;
+	public static ArrayList<String> activeUsers;
 	
 	public static void main(String[] args) {
 		
@@ -89,20 +95,50 @@ public class BackendMain {
 					System.out.println("[INFO] Initialized communications with new client. Attempting contact...");
 					newOut.println("Greetings.");
 					String line = newIn.readLine();
-					if (line.equals("SCOUTOLIERS-auth-18.3.5"))
+					if (line.equals("SCOUTOLIERS-auth-applesauce"))
 						newOut.println("SCOUT");
 					else {
 						newOut.println("ERR");
 						newOut.println("Invalid client software. Please try updating.");
 						newClient.close();
 						System.out.println("[WARN] Client was running outdated or unofficial software. Disconnected.");
+						break;
 					}
 					
-					System.out.println("[INFO] Authenticated client. Retrieving user sign-in data...");
+					System.out.println("[INFO] Authenticated client software. Retrieving user sign-in data...");
 					
 					String user = newIn.readLine();
 					String pass = newIn.readLine();
 					
+					String lookup = loadLogins().get(user);
+					if (lookup == null) {
+						newOut.println("ERR");
+						newOut.println("Incorrect username.");
+						newClient.close();
+						System.out.println("[WARN] Incorrect username given not in database. Disconnected.");
+						break;
+					}
+					if (!lookup.equals(pass)) {
+						newOut.println("ERR");
+						newOut.println("Incorrect password.");
+						newClient.close();
+						System.out.println("[WARN] Correct username, but incorrect password. Disconnected.");
+						break;
+					}
+					
+					clients.add(newClient);
+					ins.add(newIn);
+					outs.add(newOut);
+					activeUsers.add(user);
+					
+					System.out.println("[INFO] Client successfully signed in as " + user + ".");
+					newOut.println("AUTH-COMPLETE");
+					
+					long time = System.currentTimeMillis();
+					newIn.readLine();
+					time = System.currentTimeMillis() - time;
+					
+					System.out.println("[INFO] " + user + " is connected with " + time + " ms ping.");
 					
 				}
 				
@@ -111,6 +147,47 @@ public class BackendMain {
 				System.out.println("[WARN] Failed to communicate with the client. Abandoning the connection.");
 			}
 			
+		}
+		
+	}
+	
+	public static void saveLogins(HashMap<String, String> logins) {
+		
+		try {
+			
+			PrintWriter save = new PrintWriter("login-database.csv");
+			
+			for (String key : logins.keySet()) {
+				save.println(key + "," + logins.get(key));
+			}
+			
+			save.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("[WARN] Encountered an error while attempting to save the logins.");
+		}
+		
+	}
+	
+	public static HashMap<String, String> loadLogins() {
+		
+		try {
+			
+			ArrayList<String> lines = (ArrayList<String>) Files.lines(Paths.get("login-database.csv")).collect(Collectors.toList());
+			HashMap<String, String> logins = new HashMap<>();
+			
+			for (String line : lines) {
+				String[] login = line.split(",");
+				logins.put(login[0], login[1]);
+			}
+			
+			return logins;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("[WARN] Encountered an error while attempting to load the logins.");
+			return new HashMap<>();
 		}
 		
 	}

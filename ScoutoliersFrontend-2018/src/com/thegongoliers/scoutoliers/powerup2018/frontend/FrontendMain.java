@@ -1,6 +1,7 @@
 package com.thegongoliers.scoutoliers.powerup2018.frontend;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
@@ -16,12 +17,18 @@ import javax.swing.JLabel;
 
 /**
  * @author Nicholas Bottone
- * @version 18.3.5
+ * @version 18.3.6
  */
 public class FrontendMain {
 	
-	public static final String VERSION = "ALPHA 18.3.5";
+	public static final String VERSION = "ALPHA 18.3.6";
 	public static ArrayList<String> saveData;
+	
+	public static final String space = "                                                                                                "
+			+ "                                                                                                                         "
+			+ "                                                                                                                         "
+			+ "                                                                                                                         "
+			+ "                                                                                                                         ";
 	
 	public static Socket server;
 	public static PrintWriter out;
@@ -49,19 +56,23 @@ public class FrontendMain {
 	public static JButton b8;
 	public static JButton b9;
 	
+	public static WelcomeScreen ws;
+	public static HomeScreen hs;
+	
 	public static void main(String[] args) {
 		
 		try {
-			saveData = (ArrayList<String>) Files.lines(Paths.get("list.txt")).collect(Collectors.toList());
+			saveData = (ArrayList<String>) Files.lines(Paths.get("scoutoliers-autologin")).collect(Collectors.toList());
+			System.out.print("Loaded saved auto-login information!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.print("Did not load saved auto-login information.");
 		}
 		
-		new WelcomeScreen().show();
+		ws = new WelcomeScreen();
 		
 	}
 	
-	public static void displayError(String message) {
+	public static void displayError(String message, boolean fatal) {
 		
 		JFrame frame = new JFrame();
 		JLabel error = new JLabel("Error! ");
@@ -73,10 +84,18 @@ public class FrontendMain {
 		frame.add(error);
 		frame.add(label);
 		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setBackground(Color.RED);
-		frame.setSize(300, 300);
+		if (fatal) frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setIconImage(ws.icon.getImage());
+		frame.setLayout(new FlowLayout());
+		frame.setSize(800, 125);
 		frame.setVisible(true);
+		
+	}
+
+	public static void launchHome() {
+		
+		hs = new HomeScreen();
 		
 	}
 	

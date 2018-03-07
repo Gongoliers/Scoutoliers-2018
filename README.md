@@ -1,4 +1,4 @@
-# Scoutoliers-2018
+# Scoutoliers: FIRST Power Up Edition
 ![A gondola with a telescope](scoutoliers-logo.png?raw=true "Scoutoliers Logo")
 
 This is a scouting service designed for FIRST Power Up 2018.
