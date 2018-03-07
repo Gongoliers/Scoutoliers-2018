@@ -24,12 +24,13 @@ public class HomeScreen {
 	public JLabel l1;
 	public JLabel l2;
 	public JLabel l3;
+	public JLabel l4;
 	
 	public JButton b1;
 	public JButton b2;
 	public JButton b3;
 	
-	public HomeScreen() {
+	public HomeScreen(long ping) {
 		
 		frame = new JFrame("Scoutoliers - FIRST Power Up");
 		
@@ -37,6 +38,7 @@ public class HomeScreen {
 		l1 = new JLabel("Scoutoliers 2018");
 		l2 = new JLabel("FIRST Power Up");
 		l3 = new JLabel("Please select your desired action.");
+		l4 = new JLabel("Approximate Ping: " + ping);
 		
 		b1 = new JButton("PRE-SCOUTING");
 		b2 = new JButton("MATCH SCOUTING");
@@ -73,6 +75,15 @@ public class HomeScreen {
 				// TODO: Go to team ranking screen
 			}
 		});
+		
+		frame.add(l1);
+		frame.add(im);
+		frame.add(l2);
+		frame.add(l3);
+		frame.add(b1);
+		frame.add(b2);
+		frame.add(b3);
+		frame.add(l4);
 		
 		frame.getContentPane().setBackground(Color.ORANGE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

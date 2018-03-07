@@ -93,9 +93,9 @@ public class FrontendMain {
 		
 	}
 
-	public static void launchHome() {
+	public static void launchHome(long ping) {
 		
-		hs = new HomeScreen();
+		hs = new HomeScreen(ping);
 		
 	}
 	
