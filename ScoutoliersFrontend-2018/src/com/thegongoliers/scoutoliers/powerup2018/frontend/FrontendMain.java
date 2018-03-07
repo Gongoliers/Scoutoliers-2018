@@ -17,11 +17,11 @@ import javax.swing.JLabel;
 
 /**
  * @author Nicholas Bottone
- * @version 18.3.6
+ * @version 18.3.7
  */
 public class FrontendMain {
 	
-	public static final String VERSION = "ALPHA 18.3.6";
+	public static final String VERSION = "ALPHA 18.3.7";
 	public static ArrayList<String> saveData;
 	
 	public static final String space = "                                                                                                "

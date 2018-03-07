@@ -17,11 +17,11 @@ import javax.swing.Timer;
 
 /**
  * @author Nicholas Bottone
- * @version 18.3.5
+ * @version 18.3.7
  */
 public class BackendMain {
 	
-	public static final String VERSION = "ALPHA 18.3.6";
+	public static final String VERSION = "ALPHA 18.3.7";
 	
 	public static ServerSocket server;
 	public static ArrayList<Socket> clients = new ArrayList<>();
