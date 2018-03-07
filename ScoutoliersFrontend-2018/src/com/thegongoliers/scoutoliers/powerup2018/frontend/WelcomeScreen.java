@@ -208,6 +208,16 @@ public class WelcomeScreen {
 			return;
 		}
 		
+		try {
+			PrintWriter save = new PrintWriter("scoutoliers-autologin");
+			save.println(user);
+			save.println(pass);
+			save.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Failed to save auto-login file.");
+		}
+		
 		FrontendMain.launchHome();
 		
 	}

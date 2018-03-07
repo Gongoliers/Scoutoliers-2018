@@ -24,10 +24,10 @@ public class BackendMain {
 	public static final String VERSION = "ALPHA 18.3.6";
 	
 	public static ServerSocket server;
-	public static ArrayList<Socket> clients;
-	public static ArrayList<PrintWriter> outs;
-	public static ArrayList<BufferedReader> ins;
-	public static ArrayList<String> activeUsers;
+	public static ArrayList<Socket> clients = new ArrayList<>();
+	public static ArrayList<PrintWriter> outs = new ArrayList<>();
+	public static ArrayList<BufferedReader> ins = new ArrayList<>();
+	public static ArrayList<String> activeUsers = new ArrayList<>();
 	
 	public static void main(String[] args) {
 		
@@ -42,7 +42,6 @@ public class BackendMain {
 		try {
 			
 			server = new ServerSocket(5112);
-			server.setSoTimeout(2000);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
