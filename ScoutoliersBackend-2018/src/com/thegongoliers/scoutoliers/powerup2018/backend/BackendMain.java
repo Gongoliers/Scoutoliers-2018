@@ -106,7 +106,7 @@ public class BackendMain {
 					
 					System.out.println("[INFO] Authenticated client software. Retrieving user sign-in data...");
 					
-					String user = newIn.readLine();
+					String user = newIn.readLine().toLowerCase();
 					String pass = newIn.readLine();
 					
 					String lookup = loadLogins().get(user);
