@@ -1,4 +1,6 @@
 # Scoutoliers-2018
+![A gondola with a telescope](scoutoliers-logo.png?raw=true "Scoutoliers Logo")
+
 This is a scouting service designed for FIRST Power Up 2018.
 We are The Gongoliers, FRC Team 5112.  We are based in North Scituate, Rhode Island at Ponaganset High School.
 Developed by Nicholas Bottone, with special thanks to Greg Gongoleski, Greg Coffey, Joseph Mazzone, and Kyle Corry.
