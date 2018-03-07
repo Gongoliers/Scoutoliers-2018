@@ -173,6 +173,8 @@ public class WelcomeScreen {
 			return;
 		}
 		
+		long time = 50;
+		
 		try {
 			
 			String line = FrontendMain.in.readLine();
@@ -181,7 +183,7 @@ public class WelcomeScreen {
 				return;
 			}
 			
-			long time = System.currentTimeMillis();
+			time = System.currentTimeMillis();
 			FrontendMain.out.println("SCOUTOLIERS-auth-applesauce");
 			
 			line = FrontendMain.in.readLine();

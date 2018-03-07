@@ -38,7 +38,7 @@ public class HomeScreen {
 		l1 = new JLabel("Scoutoliers 2018");
 		l2 = new JLabel("FIRST Power Up");
 		l3 = new JLabel("Please select your desired action.");
-		l4 = new JLabel("Approximate Ping: " + ping);
+		l4 = new JLabel("Approximate Ping: " + ping + " ms");
 		
 		b1 = new JButton("PRE-SCOUTING");
 		b2 = new JButton("MATCH SCOUTING");
@@ -89,7 +89,7 @@ public class HomeScreen {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setIconImage(FrontendMain.ws.icon.getImage());
 		frame.setLayout(new FlowLayout());
-		frame.setSize(400, 650);
+		frame.setSize(635, 400);
 		frame.setVisible(true);
 		
 	}
