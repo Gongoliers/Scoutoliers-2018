@@ -97,25 +97,34 @@ public class FrontendMain {
 		
 	}
 
-	public static void launchHome(long ping) {
+	public static void initLaunchHome(long ping) {
 		
 		hs = new HomeScreen(ping);
 		
 	}
+	
+	public static void relaunchHome() {
+		
+		hs.frame.setVisible(true);
+		
+	}
 
 	public static void startPreScouting() {
-		// TODO
+		
 		pss = new PreScoutScreen();
+		
 	}
 
 	public static void startMatchScouting() {
-		// TODO
+		
 		mss = new MatchScoutScreen();
+		
 	}
 
 	public static void showTeamRankings() {
-		// TODO
+		
 		trs = new TeamRankScreen();
+		
 	}
 	
 }

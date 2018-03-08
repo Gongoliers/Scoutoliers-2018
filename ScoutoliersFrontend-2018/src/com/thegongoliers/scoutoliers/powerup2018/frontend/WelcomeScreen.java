@@ -220,7 +220,7 @@ public class WelcomeScreen {
 			System.out.println("Failed to save auto-login file.");
 		}
 		
-		FrontendMain.launchHome(time);
+		FrontendMain.initLaunchHome(time);
 		
 	}
 	
