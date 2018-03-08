@@ -16,8 +16,6 @@ import javax.swing.JLabel;
  */
 public class HomeScreen {
 	
-	private static final String space = FrontendMain.space;
-	
 	public JFrame frame;
 	
 	public JLabel im;
@@ -55,24 +53,24 @@ public class HomeScreen {
 		b1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				frame.dispose();
-				// TODO: Go to Pre-Scouting screen
+				frame.setVisible(false);
+				FrontendMain.startPreScouting();
 			}
 		});
 		
 		b2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				frame.dispose();
-				// TODO: Go to Match Scouting screen
+				frame.setVisible(false);
+				FrontendMain.startMatchScouting();
 			}
 		});
 		
 		b3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				frame.dispose();
-				// TODO: Go to team ranking screen
+				frame.setVisible(false);
+				FrontendMain.showTeamRankings();
 			}
 		});
 		

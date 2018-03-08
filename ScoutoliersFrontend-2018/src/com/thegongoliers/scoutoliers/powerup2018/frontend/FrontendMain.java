@@ -58,6 +58,10 @@ public class FrontendMain {
 	
 	public static WelcomeScreen ws;
 	public static HomeScreen hs;
+	public static PreScoutScreen pss;
+	public static MatchScoutScreen mss;
+	public static TeamRankScreen trs;
+	public static MoreDetailScreen mds;
 	
 	public static void main(String[] args) {
 		
@@ -97,6 +101,21 @@ public class FrontendMain {
 		
 		hs = new HomeScreen(ping);
 		
+	}
+
+	public static void startPreScouting() {
+		// TODO
+		pss = new PreScoutScreen();
+	}
+
+	public static void startMatchScouting() {
+		// TODO
+		mss = new MatchScoutScreen();
+	}
+
+	public static void showTeamRankings() {
+		// TODO
+		trs = new TeamRankScreen();
 	}
 	
 }
