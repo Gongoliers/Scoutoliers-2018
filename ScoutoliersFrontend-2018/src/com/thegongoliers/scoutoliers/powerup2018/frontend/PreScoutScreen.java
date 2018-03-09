@@ -1,6 +1,10 @@
 package com.thegongoliers.scoutoliers.powerup2018.frontend;
 
+import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -35,7 +39,7 @@ public class PreScoutScreen {
 		frame = new JFrame("Pre-Scouting - Scoutoliers");
 		
 		l1 = new JLabel("Scoutoliers Pre-Scouting");
-		l2 = new JLabel("Please select a team.");
+		l2 = new JLabel("Enter a team number.");
 		l3 = new JLabel();
 		l4 = new JLabel();
 		
@@ -54,11 +58,41 @@ public class PreScoutScreen {
 		l3.setFont(new Font("", Font.PLAIN, 20));
 		l4.setFont(new Font("", Font.PLAIN, 20));
 		
-		// TODO
+		frame.add(l1);
+		frame.add(l2);
+		frame.add(f1);
+		frame.add(b1);
+		
+		frame.getContentPane().setBackground(Color.GREEN);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setIconImage(FrontendMain.ws.icon.getImage());
+		frame.setLayout(new FlowLayout());
+		frame.setSize(400, 700);
+		frame.setVisible(true);
+		
+		b1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				int i;
+				try {
+					i = Integer.parseInt(f1.getText());
+					if (i < 1 || i > 7000) Integer.parseInt("lol");
+				} catch (Exception e) {
+					f1.setText("");
+					return;
+				}
+				b1.removeActionListener(this);
+				beginDataCollection(i);
+			}
+		});
 		
 	}
 	
 	public void beginDataCollection(int teamNumber) {
+		
+		FrontendMain.out.println("PRESCOUT " + teamNumber);
+		
+		l2.setText("Now prescouting team " + teamNumber);
 		
 		// TODO
 		

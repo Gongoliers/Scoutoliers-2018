@@ -17,11 +17,11 @@ import javax.swing.Timer;
 
 /**
  * @author Nicholas Bottone
- * @version 18.3.7
+ * @version 18.3.9
  */
 public class BackendMain {
 	
-	public static final String VERSION = "ALPHA 18.3.7";
+	public static final String VERSION = "ALPHA 18.3.9";
 	
 	public static ServerSocket server;
 	public static ArrayList<Socket> clients = new ArrayList<>();
@@ -61,7 +61,19 @@ public class BackendMain {
 					
 					try {
 						
-						
+						if (ins.get(i).ready()) {
+							
+							String line = ins.get(i).readLine();
+							
+							if (line.startsWith("PRESCOUT")) {
+								new PreScout(clients.get(i), ins.get(i), outs.get(i), activeUsers.get(i), line).start();
+							} else if (line.startsWith("MATCHSCOUT")) {
+								new MatchScout(clients.get(i), ins.get(i), outs.get(i), activeUsers.get(i), line).start();
+							} else if (line.startsWith("FETCHDATA")) {
+								new FetchData(clients.get(i), ins.get(i), outs.get(i), activeUsers.get(i), line).start();
+							}
+							
+						}
 						
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -190,5 +202,80 @@ public class BackendMain {
 		}
 		
 	}
+	
+	public static class PreScout extends Thread {
+		
+		private BufferedReader in;
+		private PrintWriter out;
+		private Socket client;
+		private String user;
+		private String line;
+		
+		public PreScout(Socket client, BufferedReader in, PrintWriter out, String user, String line) {
+			this.in = in;
+			this.out = out;
+			this.client = client;
+			this.user = user;
+			this.line = line;
+		}
+		
+		@Override
+		public void run() {
+			
+			// TODO
+			
+		}
+		
+	}
+	
+	public static class MatchScout extends Thread {
+			
+			private BufferedReader in;
+			private PrintWriter out;
+			private Socket client;
+			private String user;
+			private String line;
+			
+			public MatchScout(Socket client, BufferedReader in, PrintWriter out, String user, String line) {
+				this.in = in;
+				this.out = out;
+				this.client = client;
+				this.user = user;
+				this.line = line;
+			}
+			
+			@Override
+			public void run() {
+				
+				// TODO
+				
+			}
+		
+	}
+
+	public static class FetchData extends Thread {
+	
+		private BufferedReader in;
+		private PrintWriter out;
+		private Socket client;
+		private String user;
+		private String line;
+		
+		public FetchData(Socket client, BufferedReader in, PrintWriter out, String user, String line) {
+			this.in = in;
+			this.out = out;
+			this.client = client;
+			this.user = user;
+			this.line = line;
+		}
+		
+		@Override
+		public void run() {
+			
+			// TODO
+			
+		}
+	
+}
 	
 }
