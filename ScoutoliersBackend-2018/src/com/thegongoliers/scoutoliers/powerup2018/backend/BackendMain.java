@@ -15,6 +15,8 @@ import java.util.stream.Collectors;
 
 import javax.swing.Timer;
 
+import com.thebluealliance.api.v3.TBA;
+
 /**
  * @author Nicholas Bottone
  * @version 18.3.9
@@ -22,12 +24,16 @@ import javax.swing.Timer;
 public class BackendMain {
 	
 	public static final String VERSION = "ALPHA 18.3.9";
-	
+	public static final String X_TBA_Auth_Key = "";			 // TODO: Replace with your own API auth key
+	public static final String TBA_EVENT_CODE = "2018mabri"; // TODO: Replace with your own event code
+															 // This event code is for NE District SEMass 2018
 	public static ServerSocket server;
 	public static ArrayList<Socket> clients = new ArrayList<>();
 	public static ArrayList<PrintWriter> outs = new ArrayList<>();
 	public static ArrayList<BufferedReader> ins = new ArrayList<>();
 	public static ArrayList<String> activeUsers = new ArrayList<>();
+	
+	public static TBA tba;
 	
 	public static void main(String[] args) {
 		
@@ -51,6 +57,9 @@ public class BackendMain {
 		}
 		
 		System.out.println("[INFO] Server backend operational.");
+		
+		tba = new TBA(X_TBA_Auth_Key);
+		
 		System.out.println("[INFO] Configuring 100ms tick timer.");
 		
 		Timer timer = new Timer(100, new ActionListener() {
@@ -211,6 +220,8 @@ public class BackendMain {
 		private String user;
 		private String line;
 		
+		ArrayList<String> predata;
+		
 		public PreScout(Socket client, BufferedReader in, PrintWriter out, String user, String line) {
 			this.in = in;
 			this.out = out;
@@ -221,6 +232,15 @@ public class BackendMain {
 		
 		@Override
 		public void run() {
+			
+			try {
+				predata = (ArrayList<String>) Files.lines(Paths.get("prescouting-data.csv")).collect(Collectors.toList());
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("[WARN] Encountered an error while attempting to load the prescouting data.");
+			}
+			
+			
 			
 			// TODO
 			
