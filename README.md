@@ -41,3 +41,6 @@ The Scoutoliers app was originally created in 2017 for the game FIRST Steamworks
 - **Platform-independent** allows you to use any operating system, whether on a laptop, tablet, or mobile phone.  No app installation required.
   - **Online app** transmits data through your web browser instead of a dedicated app, saving space on your device.
 - More? 
+
+## Libraries
+We use [spencerng's TBA API](https://github.com/spencerng/blue-alliance-api-java-library) to communicate with The Blue Alliance.  We use [Google's Gson API](https://github.com/google/gson) to decode JSON representations.  Both of these libraries are included as JAR files within the source code and inside of the Java classpath.
