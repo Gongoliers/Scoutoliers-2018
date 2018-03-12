@@ -58,6 +58,16 @@ public class PreScoutScreen {
 		l3.setFont(new Font("", Font.PLAIN, 20));
 		l4.setFont(new Font("", Font.PLAIN, 20));
 		
+		b1.setFont(new Font("", Font.PLAIN, 20));
+		b2.setFont(new Font("", Font.PLAIN, 20));
+		b3.setFont(new Font("", Font.PLAIN, 20));
+		
+		f1.setFont(new Font("", Font.PLAIN, 20));
+		f2.setFont(new Font("", Font.PLAIN, 20));
+		f3.setFont(new Font("", Font.PLAIN, 20));
+		f4.setFont(new Font("", Font.PLAIN, 20));
+		f5.setFont(new Font("", Font.PLAIN, 20));
+		
 		frame.add(l1);
 		frame.add(l2);
 		frame.add(f1);
@@ -88,13 +98,21 @@ public class PreScoutScreen {
 		
 	}
 	
+	int teamNumber;
+	
+	
 	public void beginDataCollection(int teamNumber) {
 		
-		FrontendMain.out.println("PRESCOUT " + teamNumber);
-		
+		this.teamNumber = teamNumber;
 		l2.setText("Now prescouting team " + teamNumber);
 		
 		// TODO
+		
+	}
+	
+	public void sendSaveData() {
+		
+		FrontendMain.out.println("PRESCOUT " + teamNumber);
 		
 	}
 	

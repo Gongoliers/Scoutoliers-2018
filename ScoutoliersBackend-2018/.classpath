@@ -6,7 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="D:/eclipse-workspace/Scoutoliers-2018/ScoutoliersBackend-2018/Dependencies/gson-2.8.1.jar"/>
-	<classpathentry kind="lib" path="D:/eclipse-workspace/Scoutoliers-2018/ScoutoliersBackend-2018/Dependencies/TBA-APIv3-Java-Library-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nicho/Documents/GitHub/ScoutoliersBackend-2018/Dependencies/gson-2.8.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nicho/Documents/GitHub/ScoutoliersBackend-2018/Dependencies/TBA-APIv3-Java-Library-1.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
